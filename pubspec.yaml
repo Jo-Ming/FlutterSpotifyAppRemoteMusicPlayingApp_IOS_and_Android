@@ -39,6 +39,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # firebase depencies
+  #cloud_firestore: 
+  #firebase_core: 
+  #firebase_auth: 
+  #firebase_storage: 
+  # used for .env file
+  flutter_dotenv:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
