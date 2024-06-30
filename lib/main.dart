@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:motiv_v1/ComponentLibrary/buttons/rerouting_button.dart';
+import 'package:motiv_v1/Testing/login_components_testing.dart';
 import 'colours.dart';
 
 void main() {
@@ -41,6 +43,9 @@ class MyApp extends StatelessWidget {
             .copyWith(error: AppColours.errorColor),
       ),
       home: const MyHomePage(),
+      routes: {
+        '/testing': (context) => const LoginTestingScreen(),
+      },
     );
   }
 }
@@ -54,12 +59,13 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      body: const Center(
-        child: Text('Hello, World!'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+      body: Center(
+        child: ReroutingButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/testing');
+          },
+          buttonText: 'Go to Testing Page',
+        ),
       ),
     );
   }
