@@ -40,10 +40,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   # firebase depencies
-  #cloud_firestore: 
-  #firebase_core: 
-  #firebase_auth: 
-  #firebase_storage: 
+  cloud_firestore: 
+  firebase_core: 
+  firebase_auth: 
+  firebase_storage: 
   # used for .env file
   flutter_dotenv:
 

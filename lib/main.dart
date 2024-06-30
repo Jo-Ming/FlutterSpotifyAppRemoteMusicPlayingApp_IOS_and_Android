@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Motiv Party',
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: AppColours.primaryColor,
@@ -40,24 +40,26 @@ class MyApp extends StatelessWidget {
             .copyWith(background: AppColours.backgroundColor)
             .copyWith(error: AppColours.errorColor),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const Text('Home Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Hello, World!'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
