@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:motiv_v1/ComponentLibrary/buttons/rerouting_button.dart';
-import 'package:motiv_v1/Testing/login_components_testing.dart';
+import 'ComponentLibrary/Buttons/rerouting_button.dart';
+import 'Testing/login_components_testing.dart';
 import 'colours.dart';
 
 void main() {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:motiv_v1/colours.dart';
+import '../../colours.dart';
 
 // This button widget is used for navigating to another page.
 class ReroutingButton extends StatelessWidget {
