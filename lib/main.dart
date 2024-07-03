@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ComponentLibrary/Buttons/rerouting_button.dart';
 import 'Testing/login_components_testing.dart';
+import 'Testing/loading_spinner_testing.dart';
 import 'colours.dart';
 
 void main() {
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(),
       routes: {
-        '/testing': (context) => const LoginTestingScreen(),
+        '/loginTesting': (context) => const LoginTestingScreen(),
+        '/spinnerTesting': (context) => const SpinnerTestingScreen(),
       },
     );
   }
@@ -62,9 +64,9 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: ReroutingButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/testing');
+            Navigator.pushNamed(context, '/spinnerTesting');
           },
-          buttonText: 'Go to Testing Page',
+          buttonText: 'Go to Spinner Testing Page',
         ),
       ),
     );

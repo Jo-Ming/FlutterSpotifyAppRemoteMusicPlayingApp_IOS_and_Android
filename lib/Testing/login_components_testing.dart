@@ -34,9 +34,10 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
             isNetworkImage: false);
       case 'NetworkImageWidget':
         return const DisplayImageWidget(
-            fileLocation: "https://www.imdb.com/name/nm1869101/mediaindex/",
-            width: 250,
-            height: 150,
+            fileLocation:
+                "https://imgs.search.brave.com/VRKRYzaSHSuPz7sA6IBEnCRBWJ9Su8_k6zp4ILV40-U/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1Qk1qVmtNVFpt/WVRJdE4yUXlNaTAw/TmpObExXRTROVFV0/WVdFeU5ETXhaVEk0/TkRaalhrRXlYa0Zx/Y0dkZVFYVnlPVFF4/TnpNMk1qWUAuanBn",
+            width: 300,
+            height: 300,
             padding: 10,
             isNetworkImage: true);
       case 'CustomTextFieldEmail':
