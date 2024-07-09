@@ -13,5 +13,7 @@ class AppColours {
   static const Color onBackgroundColor = Color(0xFFFFFFFF); // White
   static const Color onSurfaceColor = Color(0xFFFFFFFF); // White
   static const Color onErrorColor = Color(0xFFFFFFFF); // White
+
   static const Color buttonColor = Color(0xFF000000); // Black
+  static const Color buttonTextColor = Color(0xFFFFFFFF);
 }

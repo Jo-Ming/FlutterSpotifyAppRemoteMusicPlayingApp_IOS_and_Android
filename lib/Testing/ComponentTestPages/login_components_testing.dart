@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:motiv_prototype/ComponentLibrary/Buttons/login_button.dart';
 import 'package:motiv_prototype/ComponentLibrary/DisplayComponents/display_image_widget.dart';
+import 'package:motiv_prototype/ComponentLibrary/LoginComponents/forgot_password_widget.dart';
 
-import '../ComponentLibrary/TextWidgets/custom_text_input_field.dart';
+import '../../ComponentLibrary/TextWidgets/custom_text_input_field.dart';
 
 class LoginTestingScreen extends StatefulWidget {
   const LoginTestingScreen({super.key});
@@ -52,6 +54,12 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
           obscureText: _isObscured,
           toggleObscureText: _toggleObscureText,
         );
+      case 'LoginButton':
+        return LoginButton(
+          onPressed: () {},
+        );
+      case 'ForgotPasswordWidget':
+        return const ForgotPasswordWidget();
       default:
         return const SizedBox.shrink();
     }
@@ -72,7 +80,9 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
               'LogoWidget',
               'NetworkImageWidget',
               'CustomTextFieldEmail',
-              'CustomTextFieldPassword'
+              'CustomTextFieldPassword',
+              'LoginButton',
+              'ForgotPasswordWidget'
             ].map((String value) {
               return DropdownMenuItem<String>(
                 value: value,

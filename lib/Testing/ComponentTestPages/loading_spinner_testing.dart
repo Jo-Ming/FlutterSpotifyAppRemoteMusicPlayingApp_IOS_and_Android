@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:motiv_prototype/ComponentLibrary/LoadingSpinners/three_bounce.dart';
 
-import '../ComponentLibrary/LoadingSpinners/fading_circle_spinner.dart';
-import '../ComponentLibrary/LoadingSpinners/loading_spinner_wave.dart';
-import '../ComponentLibrary/LoadingSpinners/pumping_heart.dart';
-import '../ComponentLibrary/LoadingSpinners/ripple_spinner.dart';
-import '../ComponentLibrary/LoadingSpinners/spinning_lines_spinner.dart';
+import '../../ComponentLibrary/LoadingSpinners/fading_circle_spinner.dart';
+import '../../ComponentLibrary/LoadingSpinners/loading_spinner_wave.dart';
+import '../../ComponentLibrary/LoadingSpinners/pumping_heart.dart';
+import '../../ComponentLibrary/LoadingSpinners/ripple_spinner.dart';
+import '../../ComponentLibrary/LoadingSpinners/spinning_lines_spinner.dart';
 
 class SpinnerTestingScreen extends StatefulWidget {
   const SpinnerTestingScreen({super.key});
