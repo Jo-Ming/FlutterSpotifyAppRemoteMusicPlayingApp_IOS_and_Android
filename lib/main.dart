@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: AppColours.primaryColor,
-        primaryColorDark: AppColours.primaryVariant,
+        primaryColorDark: const Color.fromARGB(12, 0, 150, 167),
         scaffoldBackgroundColor: AppColours.backgroundColor,
         buttonTheme: const ButtonThemeData(
           buttonColor: AppColours.buttonColor,
