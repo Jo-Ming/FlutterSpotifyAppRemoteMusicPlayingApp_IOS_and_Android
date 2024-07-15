@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:motiv_prototype/Testing/testing_hub.dart';
 import 'ComponentLibrary/Buttons/rerouting_button.dart';
+import 'ComponentLibrary/WidgetScreens/snack_bar_widget.dart';
 import 'colours.dart';
 
 void main() {
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
             .copyWith(background: AppColours.backgroundColor)
             .copyWith(error: AppColours.errorColor),
       ),
+      scaffoldMessengerKey: SnackbarPopUp.messengerKey,
       home: const MyHomePage(),
       routes: {'/testingHub': (context) => const TestingHubPage()},
     );
