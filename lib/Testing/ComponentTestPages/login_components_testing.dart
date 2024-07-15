@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:motiv_prototype/ComponentLibrary/Buttons/login_button.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:motiv_prototype/ComponentLibrary/LoginComponents/login_button.dart';
 import 'package:motiv_prototype/ComponentLibrary/DisplayComponents/display_image_widget.dart';
 import 'package:motiv_prototype/ComponentLibrary/LoginComponents/forgot_password_widget.dart';
+import 'package:motiv_prototype/colours.dart';
 
 import '../../ComponentLibrary/TextWidgets/custom_text_input_field.dart';
+import '../../ComponentLibrary/WidgetScreens/snack_bar_widget.dart';
 
 class LoginTestingScreen extends StatefulWidget {
   const LoginTestingScreen({super.key});
@@ -22,6 +25,13 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
   void _toggleObscureText() {
     setState(() {
       _isObscured = !_isObscured;
+    });
+  }
+
+  void _showSnackBar() {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      SnackbarPopUp.showSnackBar(
+          "This is a test pop up!", AppColours.errorColor);
     });
   }
 
@@ -56,7 +66,8 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
         );
       case 'LoginButton':
         return LoginButton(
-          onPressed: () {},
+          emailController: _emailController,
+          passwordController: _passwordController,
         );
       case 'ForgotPasswordWidget':
         return const ForgotPasswordWidget();
@@ -81,6 +92,7 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
               'NetworkImageWidget',
               'CustomTextFieldEmail',
               'CustomTextFieldPassword',
+              'Snackbar',
               'LoginButton',
               'ForgotPasswordWidget'
             ].map((String value) {
@@ -92,6 +104,9 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
             onChanged: (String? newValue) {
               setState(() {
                 _selectedWidget = newValue!;
+                if (_selectedWidget == 'Snackbar') {
+                  _showSnackBar();
+                }
               });
             },
           ),
