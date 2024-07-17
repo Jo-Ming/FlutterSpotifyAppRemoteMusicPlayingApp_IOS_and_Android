@@ -39,43 +39,40 @@ class LoginButton extends StatelessWidget {
               ),
             );
             try {
-              UserCredential userCredential = await firebaseService
-                  .firebaseAuth(emailController.text, passwordController.text);
+              Map<String, dynamic> result = await firebaseService.firebaseAuth(
+                emailController.text,
+                passwordController.text,
+              );
 
               // Navigate to the HomePage if the user signs in successfully.
-              if (userCredential.user != null &&
-                  userCredential.user!.emailVerified) {
+              if (result['success'] &&
+                  result['userCredential'].user != null &&
+                  result['userCredential'].user!.emailVerified) {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => HomePage(user: userCredential.user!)),
+                      builder: (_) =>
+                          HomePage(user: result['userCredential'].user!)),
                   (route) => false,
                 );
               } else {
                 // Handle scenarios where the user is null or not verified.
-                // For example, show an error message or navigate to a different page.
-                /*
-                SnackbarPopUp.showSnackBar(
-                  'User is null or not verified',
-                  context,
-                  Colors.red,
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(result['error']),
+                    backgroundColor: Colors.red,
+                  ),
                 );
-                */
               }
-            } on FirebaseAuthException catch (e) {
+            } catch (e) {
+              // Handle unexpected errors.
               print(e);
-              /*
-              SnackbarPopUp.showSnackBar(
-                e.message,
-                context,
-                Colors.red,
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('An unexpected error occurred'),
+                  backgroundColor: Colors.red,
+                ),
               );
-              if (e.code == 'user-not-found') {
-                print('No user found for that email.');
-              } else if (e.code == 'wrong-password') {
-                print('Wrong password provided for that user.');
-              }
-              */
             }
             //navigatorKey.currentState!.popUntil((route) => route.isFirst);
           },

@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:motiv_prototype/Testing/ComponentTestPages/loading_spinner_testing.dart';
-import 'package:motiv_prototype/Testing/ComponentTestPages/login_components_testing.dart';
+import '../ServiceTestingPages/firebase_service_test_page.dart';
 
-class TestingHubPage extends StatefulWidget {
-  const TestingHubPage({super.key});
+class ServiceTestingHubPage extends StatefulWidget {
+  const ServiceTestingHubPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _TestingHubPageState createState() => _TestingHubPageState();
+  _ServiceTestingHubPageState createState() => _ServiceTestingHubPageState();
 }
 
-class _TestingHubPageState extends State<TestingHubPage> {
-  String _selectedPage = 'SpinnerTestingPage';
+class _ServiceTestingHubPageState extends State<ServiceTestingHubPage> {
+  String _selectedPage = 'FirebaseServiceTestingPage';
 
   void _navigateToSelectedPage() {
     Widget selectedPage;
 
     switch (_selectedPage) {
-      case 'SpinnerTestingPage':
-        selectedPage = const SpinnerTestingScreen();
-        break;
-      case 'LoginPageWidgets':
-        selectedPage = const LoginTestingScreen();
+      case 'FirebaseServiceTestingPage':
+        selectedPage = const FirebaseServiceTestPage();
         break;
       default:
-        selectedPage = const LoginTestingScreen();
+        selectedPage = const FirebaseServiceTestPage();
     }
 
     Navigator.push(
@@ -37,7 +33,7 @@ class _TestingHubPageState extends State<TestingHubPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Main Testing Page'),
+        title: const Text('Service Testing Hub Page'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -48,13 +44,10 @@ class _TestingHubPageState extends State<TestingHubPage> {
               value: _selectedPage,
               items: const [
                 DropdownMenuItem(
-                  value: 'SpinnerTestingPage',
-                  child: Text('SpinnerTestingPage'),
+                  value: 'FirebaseServiceTestingPage',
+                  child: Text('FirebaseServiceTestingPage'),
                 ),
-                DropdownMenuItem(
-                  value: 'LoginPageWidgets',
-                  child: Text('LoginPageWidgets'),
-                ),
+                // Add other service testing pages here as DropdownMenuItem
               ],
               onChanged: (String? newValue) {
                 setState(() {
