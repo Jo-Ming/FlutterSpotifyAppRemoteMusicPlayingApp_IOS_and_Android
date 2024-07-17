@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:motiv_prototype/ComponentLibrary/LoginComponents/login_button.dart';
 import 'package:motiv_prototype/ComponentLibrary/DisplayComponents/display_image_widget.dart';
 import 'package:motiv_prototype/ComponentLibrary/LoginComponents/forgot_password_widget.dart';
 import 'package:motiv_prototype/colours.dart';
 
+import '../../ComponentLibrary/LoginComponents/login_button.dart';
 import '../../ComponentLibrary/TextWidgets/custom_text_input_field.dart';
 import '../../ComponentLibrary/WidgetScreens/snack_bar_widget.dart';
 

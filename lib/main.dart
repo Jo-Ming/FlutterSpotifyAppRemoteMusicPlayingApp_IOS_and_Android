@@ -1,10 +1,35 @@
+// ignore_for_file: depend_on_referenced_packages
+
+import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:motiv_prototype/Testing/testing_hub.dart';
+import 'package:motiv_prototype/Testing/TestingHubs/component_testing_hub.dart';
 import 'ComponentLibrary/Buttons/rerouting_button.dart';
 import 'ComponentLibrary/WidgetScreens/snack_bar_widget.dart';
+import 'Testing/TestingHubs/service_testing_hub.dart';
 import 'colours.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Load environment variables
+  await dotenv.load(fileName: ".env");
+
+  // Initialize Firebase
+  if (Platform.isAndroid) {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: dotenv.env['API_KEY']!,
+        appId: dotenv.env['APP_ID']!,
+        messagingSenderId: dotenv.env['MESSAGE_SENDER_ID']!,
+        projectId: dotenv.env['PROJECT_ID']!,
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
+
   runApp(const MyApp());
 }
 
@@ -45,7 +70,10 @@ class MyApp extends StatelessWidget {
       ),
       scaffoldMessengerKey: SnackbarPopUp.messengerKey,
       home: const MyHomePage(),
-      routes: {'/testingHub': (context) => const TestingHubPage()},
+      routes: {
+        '/componentTestingHub': (context) => const ComponentTestingHubPage(),
+        '/serviceTestingHub': (context) => const ServiceTestingHubPage()
+      },
     );
   }
 }
@@ -60,11 +88,23 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Home Page'),
       ),
       body: Center(
-        child: ReroutingButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/testingHub');
-          },
-          buttonText: 'Testing Hub',
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ReroutingButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/componentTestingHub');
+              },
+              buttonText: 'Component Testing Hub',
+            ),
+            const SizedBox(height: 20), // Spacing between buttons
+            ReroutingButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/serviceTestingHub');
+              },
+              buttonText: 'Service Testing Hub',
+            ),
+          ],
         ),
       ),
     );
