@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:motiv_prototype/Pages/LoginPages/forget_password_page.dart';
+import 'package:motiv_prototype/Pages/LoginPages/sign_up_page.dart';
 import 'package:motiv_prototype/colours.dart';
 
-class ForgotPasswordWidget extends StatelessWidget {
-  const ForgotPasswordWidget({super.key});
+class SignUpWidget extends StatelessWidget {
+  const SignUpWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +20,9 @@ class ForgotPasswordWidget extends StatelessWidget {
               style: const TextStyle(
                   color: AppColours.buttonTextColor, fontSize: 15),
               children: [
+                const TextSpan(text: 'No account? '),
                 TextSpan(
-                  text: 'Forgot Password?',
+                  text: 'Sign Up',
                   style: const TextStyle(
                     decoration: TextDecoration.underline,
                     color: AppColours.primaryColor,
@@ -29,11 +30,10 @@ class ForgotPasswordWidget extends StatelessWidget {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      debugPrint("User tapped on forgot password");
+                      debugPrint("User tapped on sign up");
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (_) => const ForgotPasswordPage()),
+                        MaterialPageRoute(builder: (_) => const SignUpPage()),
                       );
                     },
                 ),

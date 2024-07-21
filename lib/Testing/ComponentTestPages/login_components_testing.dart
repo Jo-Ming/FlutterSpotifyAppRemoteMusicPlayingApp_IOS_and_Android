@@ -5,6 +5,7 @@ import 'package:motiv_prototype/ComponentLibrary/LoginComponents/forgot_password
 import 'package:motiv_prototype/colours.dart';
 
 import '../../ComponentLibrary/LoginComponents/login_button.dart';
+import '../../ComponentLibrary/LoginComponents/sign_up_widget.dart';
 import '../../ComponentLibrary/TextWidgets/custom_text_input_field.dart';
 import '../../ComponentLibrary/Utility/snack_bar_widget.dart';
 
@@ -73,6 +74,8 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
         );
       case 'ForgotPasswordWidget':
         return const ForgotPasswordWidget();
+      case 'SignUpWidget':
+        return const SignUpWidget();
       default:
         return const SizedBox.shrink();
     }
@@ -96,7 +99,8 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
               'CustomTextFieldPassword',
               'Snackbar',
               'LoginButton',
-              'ForgotPasswordWidget'
+              'ForgotPasswordWidget',
+              'SignUpWidget'
             ].map((String value) {
               return DropdownMenuItem<String>(
                 value: value,
