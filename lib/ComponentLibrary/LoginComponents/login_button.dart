@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../Pages/HomePages/home_page.dart';
 import '../../Services/firebase_service.dart';
 import '../../colours.dart';
@@ -68,7 +66,7 @@ class LoginButton extends StatelessWidget {
               // Handle unexpected errors.
               print(e);
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
+                const SnackBar(
                   content: Text('An unexpected error occurred'),
                   backgroundColor: Colors.red,
                 ),

@@ -6,7 +6,7 @@ import 'package:motiv_prototype/colours.dart';
 
 import '../../ComponentLibrary/LoginComponents/login_button.dart';
 import '../../ComponentLibrary/TextWidgets/custom_text_input_field.dart';
-import '../../ComponentLibrary/WidgetScreens/snack_bar_widget.dart';
+import '../../ComponentLibrary/Utility/snack_bar_widget.dart';
 
 class LoginTestingScreen extends StatefulWidget {
   const LoginTestingScreen({super.key});
@@ -65,6 +65,8 @@ class LoginTestingScreenState extends State<LoginTestingScreen> {
           toggleObscureText: _toggleObscureText,
         );
       case 'LoginButton':
+        _emailController.text = 'jomingrogers@gmail.com';
+        _passwordController.text = 'password';
         return LoginButton(
           emailController: _emailController,
           passwordController: _passwordController,

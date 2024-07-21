@@ -16,10 +16,10 @@ class FirebaseServiceTestPageState extends State<FirebaseServiceTestPage> {
 
   void _callService() async {
     if (_selectedService == 'FirebaseAuth') {
-      String result =
-          service.firebaseAuth('jomingrogers@gmail.com', 'password').toString();
+      Map<String, dynamic> authentication =
+          await service.firebaseAuth('jomingrogers@gmail.com', 'password');
       setState(() {
-        _output = result;
+        _output = authentication.toString();
       });
     }
   }
