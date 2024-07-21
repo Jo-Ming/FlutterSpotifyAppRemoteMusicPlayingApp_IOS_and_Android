@@ -13,7 +13,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Forgotten Password Page'),
+        title: const Text('Sign Up Page'),
       ),
     );
   }

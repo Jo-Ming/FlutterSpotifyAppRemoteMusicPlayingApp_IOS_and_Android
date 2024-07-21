@@ -14,6 +14,67 @@ class LoginButton extends StatelessWidget {
     required this.passwordController,
   });
 
+  Future<void> _login(BuildContext context) async {
+    debugPrint("User tapped on login button");
+    FirebaseService firebaseService = FirebaseService();
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: WaveSpinner(
+          size: 50.0,
+          color: Colors.blue,
+          duration: Duration(milliseconds: 1200),
+        ),
+      ),
+    );
+    try {
+      Map<String, dynamic> result = await firebaseService.firebaseAuth(
+        emailController.text,
+        passwordController.text,
+      );
+
+      // Close the loading spinner dialog
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
+
+      // Navigate to the HomePage if the user signs in successfully.
+      if (result['success'] &&
+          result['userCredential'].user != null &&
+          result['userCredential'].user!.emailVerified) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (_) => HomePage(user: result['userCredential'].user!)),
+          (route) => false,
+        );
+      } else {
+        // Handle scenarios where the user is null or not verified.
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(result['error']),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      // Close the loading spinner dialog in case of an error
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
+
+      // Handle unexpected errors.
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('An unexpected error occurred'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,58 +83,7 @@ class LoginButton extends StatelessWidget {
         height: 50,
         width: 300,
         child: ElevatedButton(
-          onPressed: () async {
-            debugPrint("User tapped on login button");
-            FirebaseService firebaseService = FirebaseService();
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (context) => const Center(
-                child: WaveSpinner(
-                  size: 50.0,
-                  color: Colors.blue,
-                  duration: Duration(milliseconds: 1200),
-                ),
-              ),
-            );
-            try {
-              Map<String, dynamic> result = await firebaseService.firebaseAuth(
-                emailController.text,
-                passwordController.text,
-              );
-
-              // Navigate to the HomePage if the user signs in successfully.
-              if (result['success'] &&
-                  result['userCredential'].user != null &&
-                  result['userCredential'].user!.emailVerified) {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) =>
-                          HomePage(user: result['userCredential'].user!)),
-                  (route) => false,
-                );
-              } else {
-                // Handle scenarios where the user is null or not verified.
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(result['error']),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              }
-            } catch (e) {
-              // Handle unexpected errors.
-              print(e);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('An unexpected error occurred'),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
-            //navigatorKey.currentState!.popUntil((route) => route.isFirst);
-          },
+          onPressed: () => _login(context),
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColours.buttonColor,
             shape: RoundedRectangleBorder(
