@@ -15,6 +15,7 @@ class FirebaseService {
         'userCredential': userCredential,
       };
     } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException: ${e.code}, ${e.message}');
       return {
         'success': false,
         'error': e.message,

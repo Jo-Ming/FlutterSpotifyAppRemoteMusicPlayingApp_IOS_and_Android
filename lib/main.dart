@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:motiv_prototype/Testing/TestingHubs/component_testing_hub.dart';
 import 'ComponentLibrary/Buttons/rerouting_button.dart';
-import 'ComponentLibrary/WidgetScreens/snack_bar_widget.dart';
+import 'ComponentLibrary/Utility/snack_bar_widget.dart';
 import 'Testing/TestingHubs/service_testing_hub.dart';
 import 'colours.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -17,17 +17,23 @@ Future<void> main() async {
   await dotenv.load(fileName: ".env");
 
   // Initialize Firebase
-  if (Platform.isAndroid) {
-    await Firebase.initializeApp(
-      options: FirebaseOptions(
-        apiKey: dotenv.env['API_KEY']!,
-        appId: dotenv.env['APP_ID']!,
-        messagingSenderId: dotenv.env['MESSAGE_SENDER_ID']!,
-        projectId: dotenv.env['PROJECT_ID']!,
-      ),
-    );
-  } else {
-    await Firebase.initializeApp();
+  FirebaseApp firebaseApp;
+  try {
+    if (Platform.isAndroid) {
+      firebaseApp = await Firebase.initializeApp(
+        options: FirebaseOptions(
+          apiKey: dotenv.env['API_KEY']!,
+          appId: dotenv.env['APP_ID']!,
+          messagingSenderId: dotenv.env['MESSAGE_SENDER_ID']!,
+          projectId: dotenv.env['PROJECT_ID']!,
+        ),
+      );
+    } else {
+      firebaseApp = await Firebase.initializeApp();
+    }
+    print('Firebase initialized: ${firebaseApp.name}');
+  } catch (e) {
+    print('Firebase initialization error: $e');
   }
 
   runApp(const MyApp());
