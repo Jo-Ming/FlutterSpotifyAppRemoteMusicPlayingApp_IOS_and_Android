@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../Services/firebase_service.dart';
 
 class FirebaseServiceTestPage extends StatefulWidget {
@@ -15,13 +14,30 @@ class FirebaseServiceTestPageState extends State<FirebaseServiceTestPage> {
   final FirebaseService service = FirebaseService();
 
   void _callService() async {
-    if (_selectedService == 'FirebaseAuth') {
-      Map<String, dynamic> authentication =
-          await service.firebaseAuth('jomingrogers@gmail.com', 'password');
-      setState(() {
-        _output = authentication.toString();
-      });
+    String email = 'test@example.com';
+    String password = 'password123';
+
+    Map<String, dynamic> result;
+
+    switch (_selectedService) {
+      case 'FirebaseAuth':
+        result = await service.firebaseAuth(email, password);
+        break;
+      case 'SignUp':
+        result = await service.signUp(email, password);
+        break;
+      default:
+        result = {'success': false, 'error': 'Invalid service selected'};
+        break;
     }
+
+    setState(() {
+      if (result['success']) {
+        _output = 'Success: ${result['userCredential']}';
+      } else {
+        _output = 'Error: ${result['error']}';
+      }
+    });
   }
 
   @override
@@ -37,7 +53,7 @@ class FirebaseServiceTestPageState extends State<FirebaseServiceTestPage> {
           children: [
             DropdownButton<String>(
               value: _selectedService,
-              items: ['FirebaseAuth'].map((String value) {
+              items: ['FirebaseAuth', 'SignUp'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:motiv_prototype/ComponentLibrary/DisplayComponents/display_image_widget.dart';
+import 'package:motiv_prototype/ComponentLibrary/SignUpComponents/password_input_fields.dart';
+import 'package:motiv_prototype/ComponentLibrary/SignUpComponents/sign_up_text_field.dart';
 import 'package:motiv_prototype/colours.dart';
 
+import '../../ComponentLibrary/SignUpComponents/sign_up_button.dart';
 import '../../ComponentLibrary/Utility/snack_bar_widget.dart';
 
 class SignUpTestingScreen extends StatefulWidget {
@@ -41,7 +44,25 @@ class SignUpTestingScreenState extends State<SignUpTestingScreen> {
             height: 150,
             padding: 10,
             isNetworkImage: false);
-
+      case 'SignUpEmailTextWidget':
+        return SignUpTextField(
+          controller: _emailController,
+          hintText: 'Enter Email',
+        );
+      case 'PasswordInputsWidget':
+        return PasswordInputField(
+          controller: _passwordController,
+          obscureText: _isObscured,
+          toggleObscureText: _toggleObscureText,
+          hintText: 'Password',
+        );
+      case 'SignUpButton':
+        _emailController.text = 'jomingrogers@gmail.com';
+        _passwordController.text = 'password';
+        return SignUpButton(
+          emailController: _emailController,
+          passwordController: _passwordController,
+        );
       default:
         return const SizedBox.shrink();
     }
@@ -60,6 +81,9 @@ class SignUpTestingScreenState extends State<SignUpTestingScreen> {
             value: _selectedWidget,
             items: [
               'LogoWidget',
+              'SignUpEmailTextWidget',
+              'PasswordInputsWidget',
+              'SignUpButton'
             ].map((String value) {
               return DropdownMenuItem<String>(
                 value: value,

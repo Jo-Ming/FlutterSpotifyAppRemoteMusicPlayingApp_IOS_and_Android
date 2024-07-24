@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:motiv_prototype/Testing/ComponentTestPages/loading_spinner_testing.dart';
 import 'package:motiv_prototype/Testing/ComponentTestPages/login_components_testing.dart';
+import 'package:motiv_prototype/Testing/ComponentTestPages/sign_up_component_tesing.dart';
 
 class ComponentTestingHubPage extends StatefulWidget {
   const ComponentTestingHubPage({super.key});
@@ -23,6 +24,9 @@ class _ComponentTestingHubPageState extends State<ComponentTestingHubPage> {
         break;
       case 'LoginPageWidgets':
         selectedPage = const LoginTestingScreen();
+        break;
+      case 'SignUpPageWidgets':
+        selectedPage = const SignUpTestingScreen();
         break;
       default:
         selectedPage = const LoginTestingScreen();
@@ -55,6 +59,10 @@ class _ComponentTestingHubPageState extends State<ComponentTestingHubPage> {
                 DropdownMenuItem(
                   value: 'LoginPageWidgets',
                   child: Text('LoginPageWidgets'),
+                ),
+                DropdownMenuItem(
+                  value: 'SignUpPageWidgets',
+                  child: Text('SignUpPageWidgets'),
                 ),
               ],
               onChanged: (String? newValue) {
