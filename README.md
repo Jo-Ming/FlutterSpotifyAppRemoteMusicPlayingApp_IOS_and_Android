@@ -7,6 +7,7 @@ Anyway, I saw online countless people unable to authenticate the Spotify app rem
 You will need your own Spotify client ID and API tokens etc.
 Also on spotify Auth I was using different redirect Urls.
 IOS_REDIRECT_URL=Runner://
+
 ANDROID_REDIRECT_URL=http://localhost:5000/callback
 
 ## Getting Started
