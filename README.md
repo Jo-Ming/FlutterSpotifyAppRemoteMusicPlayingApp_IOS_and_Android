@@ -4,7 +4,10 @@ A while ago I was working on a project for group controlled music streaming appl
 
 Anyway, I saw online countless people unable to authenticate the Spotify app remote for iOS and I couldn't find any for Flutter anywhere. Even the flutter library only works for android. So I created some native Swift code and a flutter method handles to call native code in Flutter which fixes this. This application has full Spotify API functionality, searching for songs, get playlists, songs, play and pause music etc. even adding to queue and such. Look at my Spotify testing service or my music demo screen for examples on how to authenticate and initialise the app remote as well as an interface that ties these together for android and iOS.
 
-You will need your own spotify client id and api tokens etc.
+You will need your own Spotify client ID and API tokens etc.
+Also on spotify Auth I was using different redirect Urls.
+IOS_REDIRECT_URL=Runner://
+ANDROID_REDIRECT_URL=http://localhost:5000/callback
 
 ## Getting Started
 
